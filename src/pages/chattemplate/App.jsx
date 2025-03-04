@@ -4,7 +4,7 @@ import CssBaseline from "@mui/joy/CssBaseline";
 import Box from "@mui/joy/Box";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
-import ChatHome from "./components/ChatHome";
+import ChatHome from "./components/chatHome";
 
 // Custom theme with light purple and dark colors
 const customTheme = extendTheme({
