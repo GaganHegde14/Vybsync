@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ChatPage from "./pages/ChatPage";
 import JoyMessagesTemplate from "./pages/chattemplate/App";
 import JoySignInSideTemplate from "./components/Athentication/Login";
@@ -10,6 +10,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        {/* Redirect '/' to '/login' */}
+        <Route path="/" element={<Navigate to="/login" />} />
+
         <Route path="/login" element={<JoySignInSideTemplate />} />
         <Route path="/join" element={<SignUp />} />
         <Route path="/ChatPage" element={<ChatPage />} />
