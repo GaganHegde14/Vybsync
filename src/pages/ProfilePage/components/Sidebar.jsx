@@ -55,7 +55,7 @@ export default function Sidebar() {
 
         const decoded = jwtDecode(token);
         const response = await fetch(
-          `http://localhost:8080/api/user/${decoded.id}`,
+          `https://vybsync-back-production.up.railway.app/api/user/${decoded.id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -99,7 +99,9 @@ export default function Sidebar() {
 
       const userPromises = emailList.map((email) =>
         fetch(
-          `http://localhost:8080/api/user?search=${encodeURIComponent(email)}`,
+          `https://vybsync-back-production.up.railway.app/api/user?search=${encodeURIComponent(
+            email
+          )}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -120,18 +122,21 @@ export default function Sidebar() {
         return;
       }
 
-      const response = await fetch("http://localhost:8080/api/chat/group", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          name: groupName,
-          users: userIds,
-          isGroupChat: true,
-        }),
-      });
+      const response = await fetch(
+        "https://vybsync-back-production.up.railway.app/api/chat/group",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name: groupName,
+            users: userIds,
+            isGroupChat: true,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

@@ -35,7 +35,7 @@ export default function MessagesPane({ chat }) {
       }
 
       const response = await fetch(
-        `http://localhost:8080/api/message/${chat._id}`,
+        `https://vybsync-back-production.up.railway.app/api/message/${chat._id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -118,17 +118,20 @@ export default function MessagesPane({ chat }) {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:8080/api/message", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          content: textAreaValue,
-          chatId: chat._id,
-        }),
-      });
+      const response = await fetch(
+        "https://vybsync-back-production.up.railway.app/api/message",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            content: textAreaValue,
+            chatId: chat._id,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -152,7 +155,7 @@ export default function MessagesPane({ chat }) {
       const token = localStorage.getItem("token");
       console.log("Deleting message:", messageId, "by user:", currentUserId);
       const response = await fetch(
-        `http://localhost:8080/api/message/${messageId}`,
+        `https://vybsync-back-production.up.railway.app/api/message/${messageId}`,
         {
           method: "DELETE",
           headers: {

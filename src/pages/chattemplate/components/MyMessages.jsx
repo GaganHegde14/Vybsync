@@ -20,13 +20,16 @@ export default function MyMessages() {
           return;
         }
 
-        const response = await fetch("http://localhost:8080/api/chat", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        });
+        const response = await fetch(
+          "https://vybsync-back-production.up.railway.app/api/chat",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to fetch chats");

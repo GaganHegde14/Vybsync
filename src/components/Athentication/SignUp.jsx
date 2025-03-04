@@ -209,7 +209,7 @@ export default function SignUp() {
                 startDecorator={<GoogleIcon />}
                 onClick={() =>
                   (window.location.href =
-                    "http://localhost:8080/api/user/auth/google")
+                    "https://vybsync-back-production.up.railway.app/api/user/auth/google")
                 }
               >
                 Continue with Google

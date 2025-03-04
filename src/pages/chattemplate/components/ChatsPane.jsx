@@ -48,7 +48,7 @@ export default function ChatsPane({
     try {
       const token = localStorage.getItem("token");
       const searchResponse = await fetch(
-        `http://localhost:8080/api/user?search=${encodeURIComponent(
+        `https://vybsync-back-production.up.railway.app/api/user?search=${encodeURIComponent(
           emailInput
         )}`,
         {
@@ -76,14 +76,17 @@ export default function ChatsPane({
         return;
       }
 
-      const chatResponse = await fetch("http://localhost:8080/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ userId: targetUser._id }),
-      });
+      const chatResponse = await fetch(
+        "https://vybsync-back-production.up.railway.app/api/chat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ userId: targetUser._id }),
+        }
+      );
       if (!chatResponse.ok) throw new Error("Failed to start chat");
       const newChat = await chatResponse.json();
       onNewChat(newChat);

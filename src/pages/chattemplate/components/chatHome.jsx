@@ -15,9 +15,12 @@ export default function ChatHome({ section = "home" }) {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const response = await fetch("http://localhost:8080/api/chat", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await fetch(
+          "https://vybsync-back-production.up.railway.app/api/chat",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
         if (!response.ok) throw new Error("Failed to fetch chats");
 

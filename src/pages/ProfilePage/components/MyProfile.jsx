@@ -34,7 +34,7 @@ export default function MyProfile({ userId }) {
         const idToFetch = userId || decoded.id; // Use provided userId or current user's ID
 
         const response = await fetch(
-          `http://localhost:8080/api/user/${idToFetch}`,
+          `https://vybsync-back-production.up.railway.app/api/user/${idToFetch}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -64,18 +64,21 @@ export default function MyProfile({ userId }) {
   const handleSave = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:8080/api/user/update", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          name: profile.name,
-          email: profile.email,
-          bio: profile.bio,
-        }),
-      });
+      const response = await fetch(
+        "https://vybsync-back-production.up.railway.app/api/user/update",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name: profile.name,
+            email: profile.email,
+            bio: profile.bio,
+          }),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to update profile");
 

@@ -83,7 +83,7 @@ export default function Sidebar() {
 
         const decoded = jwtDecode(token);
         const response = await fetch(
-          `http://localhost:8080/api/user/${decoded.id}`,
+          `https://vybsync-back-production.up.railway.app/api/user/${decoded.id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -105,9 +105,12 @@ export default function Sidebar() {
     const fetchFriends = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:8080/api/chat", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await fetch(
+          "https://vybsync-back-production.up.railway.app/api/chat",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
         if (!response.ok) throw new Error("Failed to fetch chats");
 
@@ -145,18 +148,21 @@ export default function Sidebar() {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:8080/api/chat/group", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          name: groupName,
-          users: selectedUsers.map((user) => user._id),
-          isGroupChat: true,
-        }),
-      });
+      const response = await fetch(
+        "https://vybsync-back-production.up.railway.app/api/chat/group",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name: groupName,
+            users: selectedUsers.map((user) => user._id),
+            isGroupChat: true,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

@@ -56,12 +56,15 @@ export default function JoySignInSideTemplate() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/api/user/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://vybsync-back-production.up.railway.app/api/user/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+          credentials: "include",
+        }
+      );
 
       const data = await response.json();
 
@@ -181,7 +184,7 @@ export default function JoySignInSideTemplate() {
                 startDecorator={<GoogleIcon />}
                 onClick={() =>
                   (window.location.href =
-                    "http://localhost:8080/api/user/auth/google")
+                    "https://vybsync-back-production.up.railway.app/api/user/auth/google")
                 }
               >
                 Continue with Google
