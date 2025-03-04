@@ -11,7 +11,7 @@ import Card from "@mui/joy/Card";
 import CardActions from "@mui/joy/CardActions";
 import Avatar from "@mui/joy/Avatar";
 import Divider from "@mui/joy/Divider";
-import { jwtDecode } from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 export default function MyProfile({ userId }) {
   // Optional userId for viewing others
